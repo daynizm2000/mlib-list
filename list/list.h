@@ -212,20 +212,20 @@ static inline void mlib_list_add_tail(mlib_list_head_t *list,
 
 
 static inline void mlib_list_replace(mlib_list_head_t *old,
-        mlib_list_head_t *new)
+        mlib_list_head_t *lnew)
 {
-        new->next = old->next;
-        new->prev = old->prev;
+        lnew->next = old->next;
+        lnew->prev = old->prev;
 
-        old->next->prev = new;
-        old->prev->next = new;
+        old->next->prev = lnew;
+        old->prev->next = lnew;
 }
 
 
 static inline void mlib_list_replace_init(mlib_list_head_t *old,
-        mlib_list_head_t *new)
+        mlib_list_head_t *lnew)
 {
-        mlib_list_replace(old, new);
+        mlib_list_replace(old, lnew);
         mlib_list_head_init(old);
 }
 
