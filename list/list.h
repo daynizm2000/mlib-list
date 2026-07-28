@@ -126,11 +126,11 @@ typedef struct mlib_list_head {
 
 
 #define mlib_list_next_entry(p, member) \
-        mlib_list_util_container_of((p)->member.next, __typeof__(*(p)), member)
+        mlib_list_util_container_of((p)->member.next, typeof(*(p)), member)
 
 
 #define mlib_list_prev_entry(p, member) \
-        mlib_list_util_container_of((p)->member.prev, __typeof__(*(p)), member)
+        mlib_list_util_container_of((p)->member.prev, typeof(*(p)), member)
 
 
 
@@ -155,26 +155,26 @@ typedef struct mlib_list_head {
 
 
 #define mlib_list_for_each_entry(p, head, member)                               \
-        for ((p) = mlib_list_first_entry((head), __typeof__(*(p)), member);     \
+        for ((p) = mlib_list_first_entry((head), typeof(*(p)), member);     \
                 &(p)->member != (head);                                         \
                 (p) = mlib_list_next_entry((p), member))
 
 
 #define mlib_list_for_each_entry_prev(p, head, member)                          \
-        for ((p) = mlib_list_last_entry((head), __typeof__(*(p)), member);      \
+        for ((p) = mlib_list_last_entry((head), typeof(*(p)), member);      \
                 &(p)->member != (head);                                         \
                 (p) = mlib_list_prev_entry((p), member))
 
 
 #define mlib_list_for_each_entry_safe(p, tmp, head, member)                     \
-        for ((p) = mlib_list_first_entry((head), __typeof__(*(p)), member),     \
+        for ((p) = mlib_list_first_entry((head), typeof(*(p)), member),     \
                         (tmp) = mlib_list_next_entry((p), member);              \
                 &(p)->member != (head);                                         \
                 (p) = (tmp), (tmp) = mlib_list_next_entry((tmp), member))
 
 
 #define mlib_list_for_each_entry_prev_safe(p, tmp, head, member)                \
-        for ((p) = mlib_list_last_entry((head), __typeof__(*(p)), member),      \
+        for ((p) = mlib_list_last_entry((head), typeof(*(p)), member),      \
                         (tmp) = mlib_list_prev_entry((p), member);              \
                 &(p)->member != (head);                                         \
                 (p) = (tmp), (tmp) = mlib_list_prev_entry((tmp), member))
